@@ -65,12 +65,18 @@ def start_mining():
     with open("HashcashMiningPoolABI.json") as f:
         abi = json.load(f)
     contract = w3.eth.contract(address=w3.to_checksum_address(CONTRACT_ADDRESS), abi=abi)
-    SUBMIT_FEE = contract.functions.SUBMIT_FEE().call()
     
     # Check if wallet exists
     if not PRIVATE_KEY or not MY_ADDRESS:
         print("\n❌ No wallet found. Please create a wallet first.")
         return
+        
+    # Get dynamic submit fee (considering NFT discounts)
+    try:
+        SUBMIT_FEE = contract.functions.getEffectiveSubmitFee(MY_ADDRESS).call()
+    except Exception:
+        # Fallback to base fee if the function fails (e.g. older contract)
+        SUBMIT_FEE = contract.functions.SUBMIT_FEE().call()
     
     # Check if running on Windows for emoji display
     is_windows = platform.system() == 'Windows'
@@ -96,7 +102,8 @@ def start_mining():
     if SUBMIT_FEE > 0:
         rounds_possible = eth_balance // SUBMIT_FEE
     else:
-        rounds_possible = 0  # Avoid division by zero
+        # If fee is 0 (very high discount), rounds are "unlimited" relative to fee
+        rounds_possible = "Unlimited (Very low fee)"
     
     # Check pending rewards
     pending_rewards = contract.functions.pendingRewards(MY_ADDRESS).call()
@@ -106,13 +113,13 @@ def start_mining():
     if is_windows:
         print("\n===  💰  Wallet Status ===")
         print(f"💰 ETH Balance: {eth_balance_ether:.6f} ETH")
-        print(f"🧾 Submit Fee: {submit_fee_ether:.6f} ETH per share")
+        print(f"🧾 Effective Submit Fee: {submit_fee_ether:.8f} ETH per share")
         print(f"🔢 Rounds Possible: {rounds_possible}")
         print(f"🪙  Pending Rewards: {pending_rewards_formatted:.6f} $HASH")
     else:
         print("\n=== 💰 Wallet Status ===")
         print(f"💰 ETH Balance: {eth_balance_ether:.6f} ETH")
-        print(f"🧾 Submit Fee: {submit_fee_ether:.6f} ETH per share")
+        print(f"🧾 Effective Submit Fee: {submit_fee_ether:.8f} ETH per share")
         print(f"🔢 Rounds Possible: {rounds_possible}")
         print(f"🪙 Pending Rewards: {pending_rewards_formatted:.6f} $HASH")
     
