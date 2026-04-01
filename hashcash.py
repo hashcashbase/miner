@@ -3,6 +3,7 @@ import inquirer
 import platform
 from wallet import create_wallet, import_wallet
 from claim import claim_rewards
+from achievements import manage_achievements
 from settings import update_settings
 from mining import start_mining
 from send_hash import send_hash
@@ -23,6 +24,7 @@ def get_menu_choices():
             ("📥 Import Wallet", "import_wallet"),
             ("⛏️  Start Mining", "mine"),
             ("🪙  Claim $HASH", "claim"),
+            ("🛡️  Achievement NFT", "achievements"),
             ("💸 Send $HASH", "send"),
             ("⚙️  Settings", "settings"),
             ("🔄 Check for Updates", "update"),
@@ -35,6 +37,7 @@ def get_menu_choices():
             ("📥 Import Wallet", "import_wallet"),
             ("⛏️ Start Mining", "mine"),
             ("🪙 Claim $HASH", "claim"),
+            ("🛡️ Achievement NFT", "achievements"),
             ("💸 Send $HASH", "send"),
             ("⚙️ Settings", "settings"),
             ("🔄 Check for Updates", "update"),
@@ -75,6 +78,8 @@ def main():
             start_mining()   # ⛏️ Start mining process
         elif action == "claim":
             claim_rewards()  # 🪙 Claim mining rewards
+        elif action == "achievements":
+            manage_achievements() # 🛡️ Manage Achievement NFTs
         elif action == "send":
             send_hash()      # 💸 Send HASH tokens
         elif action == "settings":

@@ -4,6 +4,6 @@ env3.local
 test1
 venv
 node_modules
-.gitignoreit push
+.gitignore
 __pycache__
 set_difficulty.py
