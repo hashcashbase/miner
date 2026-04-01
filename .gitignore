@@ -1,0 +1,9 @@
+env1.local
+env2.local
+env3.local
+test1
+venv
+node_modules
+.gitignoreit push
+__pycache__
+set_difficulty.py
