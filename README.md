@@ -1,131 +1,96 @@
-# Hashcash - Cryptocurrency Mining CLI
+# 💙 Hashcash - Advanced cryptocurrency Mining CLI (v3.0.x)
 
-## Overview
+## 🌟 Overview
 
-Hashcash is a command-line interface (CLI) application for cryptocurrency mining on the Base Sepolia network. It allows users to create wallets, mine $HASH tokens, claim rewards, and send tokens to other addresses.
+Hashcash is a high-performance command-line interface (CLI) application for decentralized cryptocurrency mining on the **Base Sepolia** network. Version 3.0 introduces a gamified **Achievement NFT** system that rewards loyal miners with reduced fees and exclusive on-chain ranks.
 
-## Features
+## 🚀 Key Features
 
-- 💰 **Wallet Management**: Create and manage your cryptocurrency wallet
-- ⛏️ **Mining**: Mine $HASH tokens using your computer's CPU
-- 🪙 **Claim Rewards**: Claim your earned $HASH tokens
-- 💸 **Send Tokens**: Transfer $HASH tokens to other addresses
-- ⚙️ **Settings**: Configure mining parameters like CPU cores and RPC URL
+- 💰 **Wallet Management**: Seamlessly create or import Ethereum-compatible wallets.
+- ⛏️ **Smart Mining**: Mine $HASH tokens using optimized CPU multi-threading.
+- 🛡️ **Achievement NFT System**: 
+    - 5 unique ranks (Stone Pickaxe to Giga Voyager).
+    - **Dynamic Discounts**: Lower your `SUBMIT_FEE` by up to **99%** by holding higher-tier NFTs.
+    - **On-chain Progress**: Track your rounds and rank up directly in the CLI.
+- 🪙 **One-Click Rewards**: Easily claim your earned $HASH tokens from the mining pool.
+- 💸 **Instant Transfers**: Send $HASH tokens to any address with built-in validation.
+- ⚙️ **Advanced Settings**: Fine-tune CPU core usage and RPC endpoints for maximum efficiency.
+- 🔄 **Auto-Updater**: Stay up to date with the latest features and security fixes.
 
-## Requirements
+## 📋 Requirements
 
-- Python 3.8 or higher
-- apt install python3.12-venv
-- apt install python3-pip
-- Internet connection
-- **Important**: You need at least >0.01 ETH in your wallet to start mining
+- **Python**: 3.8 or higher.
+- **System**: Windows, Linux (Ubuntu/Debian recommended), or macOS.
+- **Dependencies**: `python3-venv`, `python3-pip`.
+- **Wallet Balance**: At least **0.001 ETH** on Base Sepolia is required to cover transaction fees.
 
-## Installation
+## 🛠️ Installation
 
 ### Windows
+1. Download or clone this repository.
+2. Run `install_windows.bat`.
+3. The script handles all environment and dependency setups.
 
-1. Clone or download this repository
-2. Run the installation script:
-   ```
-   install_windows.bat
-   ```
-3. The script will install all required dependencies
-
-### Ubuntu/Debian
-
-1. Clone or download this repository
-2. Make the installation script executable:
-   ```
-   chmod +x install_linux.sh
-   ```
-3. Run the installation script:
-   ```
-   ./install_linux.sh
-   ```
-4. The script will create a virtual environment and install all required dependencies
+### Ubuntu / Debian / Linux
+1. `chmod +x install_linux.sh`
+2. `./install_linux.sh`
+3. Activate environment: `source venv/bin/activate`
 
 ### macOS
+1. `chmod +x install_macos.sh`
+2. `./install_macos.sh`
+3. Activate environment: `source venv/bin/activate`
 
-1. Clone or download this repository
-2. Make the installation script executable:
-   ```
-   chmod +x install_macos.sh
-   ```
-3. Run the installation script:
-   ```
-   ./install_macos.sh
-   ```
-4. The script will create a virtual environment and install all required dependencies
+## 🕹️ Usage
 
-## Usage
-
-### Starting the Application
-
-Run the application with:
-
-```
-python hashcash.py
+Run the main application:
+```bash
+python3 hashcash.py
 ```
 
-### First-time Setup
+### Main Menu Options
 
-1. Select **Create Wallet** from the main menu
-2. Follow the prompts to create a new wallet
-3. Choose whether to save your wallet information to a file
-4. Choose yes to update the `.env.local` file with your wallet information
-5. **Important**: Fund your wallet with at least 0.001 ETH on the Base
+1. **💰 Create Wallet**: Generates a new private key and address. Saves details to `.env.local`.
+2. **📥 Import Wallet**: Use your existing private key to mine from your main account.
+3. **⛏️ Start Mining**: Begins the proof-of-work process.
+    - *Note*: Bot automatically detects your NFT tier and applies discounted fees.
+4. **🪙 Claim $HASH**: View and withdraw your pending rewards to your wallet.
+5. **🛡️ Achievement NFT**: The hub for your mining career.
+    - View total rounds participated.
+    - Check current fee discount.
+    - **Mint/Upgrade**: Reach required rounds and burn $HASH to ascend to the next Tier.
+6. **💸 Send $HASH**: Transfer tokens to friends or other wallets.
+7. **⚙️ Settings**: Change your RPC provider or adjust CPU core allocation.
+8. **🔄 Check for Updates**: Pulls latest changes from the official repository.
 
-### Mining
+## 🏆 Achievement Ranks (Tiers)
 
-1. Select **Start Mining** from the main menu
-2. The application will check your wallet balance (requires at least 0.001 ETH)
-3. Mining rewards will be automatically submitted to the contract
+| Tier | Name | Target Rounds | $HASH Burn | Fee Discount |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Stone Pickaxe | 2,000 | 100 | 10% |
+| 2 | Iron Miner | 10,000 | 1,000 | 25% |
+| 3 | Golden Excavator | 25,000 | 10,000 | 50% |
+| 4 | Diamond Driller | 50,000 | 15,000 | 75% |
+| 5 | Giga Voyager | 100,000 | 25,000 | 99% |
 
-### Claiming Rewards
+## ⚙️ Configuration (.env.local)
 
-1. Select **Claim $HASH** from the main menu
-2. The application will show your pending rewards
-3. Confirm to claim your rewards
+While the CLI handles most settings, you can manually edit `.env.local`:
+- `PRIVATE_KEY`: Your mining key.
+- `CPU_CORES`: How many threads to use (default: 1).
+- `RPC_URL`: Your preferred Base Sepolia RPC (default: https://sepolia.base.org).
 
-### Sending Tokens
+## 🔒 Security & Safety
 
-1. Select **Send $HASH** from the main menu
-2. Enter the recipient's wallet address
-3. Enter the amount of $HASH to send
-4. Confirm the transaction
+- **Private Keys**: Stored locally in your `.env.local`. Never share this file!
+- **Gas Fees**: Mining involves on-chain transactions. Always ensure you have a small amount of ETH for gas.
+- **Risk**: Use at your own risk. Digital assets can be volatile.
 
-### Settings
+## 📄 License & Links
 
-1. Select **Settings** from the main menu
-2. Configure the RPC URL and number of CPU cores for mining
+- **License**: MIT
+- **Dashboard**: [Access the Web Dashboard](https://hashcash-dashboard.vercel.app)
+- **Explorer**: [View Pool on BaseScan](https://sepolia.basescan.org/address/0x8C6bfe28b4B534a2fe0F3813c4c6571A476bd274)
 
-## Configuration
-
-The application uses a `.env.local` file for configuration. The following variables can be set:
-
-- `PRIVATE_KEY`: Your wallet's private key (automatically set when creating a wallet)
-- `MY_ADDRESS`: Your wallet address (automatically set when creating a wallet)
-- `CPU_CORES`: Number of CPU cores to use for mining (default: 1)
-- `RPC_URL`: URL of the RPC endpoint (default: https://sepolia.base.org)
-- `CONTRACT_ADDRESS`: Address of the mining contract (do not change)
-- `TOKEN`: Address of the $HASH token contract (do not change)
-
-## Security Notes
-
-- Never share your private key with anyone
-- Back up your wallet information in a secure location
-- The application stores your private key in the `.env.local` file, so keep this file secure
-
-## Troubleshooting
-
-- If you encounter RPC connection issues, try changing the RPC URL in the settings menu
-- Make sure you have enough ETH in your wallet for transaction fees (minimum 0.001 ETH for mining)
-- For mining issues, try reducing the number of CPU cores
-
-## License
-
-This project is open source and available under the MIT License.
-
-## Disclaimer
-
-Cryptocurrency mining and trading involve risk. This application is provided as-is with no guarantees. Use at your own risk.
+---
+*Mine smart, rank up, and dominate the Hashcash ecosystem!* ⛏️💎
